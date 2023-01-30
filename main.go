@@ -21,8 +21,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Start Chrome
-	// Remove the 2nd param if you don't need debug information logged
 	opts := append(chromedp.DefaultExecAllocatorOptions[:],
 		chromedp.Flag("ignore-certificate-errors", "1"))
 	allocCtx, cancel := chromedp.NewExecAllocator(context.Background(), opts...)
@@ -37,7 +35,6 @@ func main() {
 		log.Printf("Error occured while trying to capture screenshot: %s", err)
 		os.Exit(1)
 	}
-	// Write our image to file
 	if err := ioutil.WriteFile(argsWithoutProg[0]+".png", imageBuf, 0644); err != nil {
 		log.Printf("Error occured while trying to write screenshot to disk: %s", err)
 		os.Exit(1)
